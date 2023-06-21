@@ -1,0 +1,16 @@
+name: "Actual Budget"
+description: "Run the latest development version of Actual Budget."
+url: "https://actualbudget.org"
+slug: "actualbudget-edge"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armv7
+startup: application
+webui: "[PROTO:option_name]://[HOST]:[PORT:5006]"
+boot: auto
+ports:
+  5006/tcp: 5006
+image: actualbudget/actual-server
+version: edge-alpine
