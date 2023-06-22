@@ -16,12 +16,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - run: "echo '${{ steps.get_latest_release.outputs.data }}' > /tmp/data.json"
+
       - run: |
-          echo '${{ steps.get_latest_release.outputs.data }}' test.json > /tmp/data.json
+          EDGE_VERSION=$(jq -r 'map(select(.metadata.container.tags | any(. == "edge-alpine"))) | .[0].metadata.container.tags | map(select(. != "edge-alpine")) | .[0]' /tmp/data.json 2>/dev/null || true)
 
-          EDGE_VERSION=$(jq -r 'map(select(.metadata.container.tags | any(. == "edge-alpine"))) | .[0].metadata.container.tags | map(select(. != "edge-alpine")) | .[0]' /tmp/data.json)
-
-          STABLE_VERSION=$(jq -r 'map(select(.metadata.container.tags | any(. == "latest-alpine"))) | .[0].metadata.container.tags | map(select(. != "latest-alpine")) | .[0]' /tmp/data.json 2>/dev/null)
+          STABLE_VERSION=$(jq -r 'map(select(.metadata.container.tags | any(. == "latest-alpine"))) | .[0].metadata.container.tags | map(select(. != "latest-alpine")) | .[0]' /tmp/data.json 2>/dev/null || true)
 
           echo $EDGE_VERSION / $STABLE_VERSION
 
