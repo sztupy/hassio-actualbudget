@@ -1,0 +1,18 @@
+name: Update version
+run-name: Update latest version names of the docker images
+on:
+  schedule:
+    - cron: '30 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  logLatestRelease:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: GET /users/actualbudget/packages/container/actual-server/versions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: "echo latest release: '${{ steps.get_latest_release.outputs.data }}'"
