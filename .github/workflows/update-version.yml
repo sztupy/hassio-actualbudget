@@ -12,7 +12,19 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /users/actualbudget/packages/container/actual-server/versions
+          route: GET /users/actualbudget/packages/container/actual-server/versions?per_page=100
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: "echo latest release: '${{ steps.get_latest_release.outputs.data }}'"
+
+      - run: |
+          echo '${{ steps.get_latest_release.outputs.data }}' test.json > /tmp/data.json
+
+          EDGE_VERSION=$(jq -r 'map(select(.metadata.container.tags | any(. == "edge-alpine"))) | .[0].metadata.container.tags | map(select(. != "edge-alpine")) | .[0]' /tmp/data.json)
+
+          STABLE_VERSION=$(jq -r 'map(select(.metadata.container.tags | any(. == "latest-alpine"))) | .[0].metadata.container.tags | map(select(. != "latest-alpine")) | .[0]' /tmp/data.json 2>/dev/null)
+
+          echo $EDGE_VERSION / $STABLE_VERSION
+
+      # - uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: Apply php-cs-fixer changes
