@@ -97,3 +97,5 @@ On mobile phones where the hosts file cannot be edited you can use some "DNS fil
 If you wish to access your Actual Budget instance anywhere in the world, you'll need to update your router settings to forward port `443` to your Home Assistant box. This step is different for each router, and you should consult the manual on how to do this step.
 
 Once this has been done you should be able to access `https://hassio-actualbudget.duckdns.org` from anywhere where you have internet connection.
+
+Do note that enabling port forwarding on your home router can expose you to additional security risks, so thread carefully when using this option. Your router's manual might have additional suggestion on how to keep your system as safe as possible after port forwarding is set up.
