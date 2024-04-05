@@ -1,0 +1,16 @@
+name: "Actual Budget Stable Ingress Version"
+description: "Run the latest stable version of Actual Budget with Hassio Ingress support."
+url: "https://actualbudget.org"
+slug: "actualbudget-ingress"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+startup: application
+boot: auto
+ingress: true
+ingress_port: 5006
+image: ghcr.io/actualbudget/actual-server
+version: 24.4.0-alpine
