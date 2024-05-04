@@ -2,6 +2,16 @@
 
 Home Assistant repository to run Actual Budget as an addon
 
+## Frequently Asked Questions / FAQ
+
+### Do you support Nabu Casa or similar?
+
+No, the add-on currently only supports the method described below using NGINX Proxy Manager. Nabu Casa and similar ingress based deployments are not currently supported. This is due to limitations in Actual Budget itself. For more info see [Issue #5](https://github.com/sztupy/hassio-actualbudget/issues/5#issuecomment-2039383654)
+
+### Actual Budget got updated recently, when can I expect it to be available through Home Assistant?
+
+Both the edge and stable versions are tracked from the official sources automatically and the latest releases should generally be available through Home Assistant within 24 hours. If it has been more than that time, feel free to create a GitHub Issue detailing the problem.
+
 # Installation
 
 ## Add-Ons
