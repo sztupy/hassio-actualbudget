@@ -14,4 +14,4 @@ boot: auto
 ports:
   5006/tcp: 5006
 image: ghcr.io/actualbudget/actual-server
-version: sha-359af05-alpine
+version: sha-b211b67-alpine
