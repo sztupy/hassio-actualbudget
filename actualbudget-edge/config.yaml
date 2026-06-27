@@ -6,8 +6,6 @@ init: false
 arch:
   - aarch64
   - amd64
-  - armhf
-  - armv7
 startup: application
 webui: "[PROTO:option_name]://[HOST]:[PORT:5006]"
 boot: auto
